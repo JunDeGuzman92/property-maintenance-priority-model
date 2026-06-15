@@ -12,15 +12,35 @@ from maintenance_priority import LogisticPriorityModel, build_feature_matrix, lo
 
 class MaintenancePriorityTests(unittest.TestCase):
     def test_feature_matrix_has_category_columns(self):
-        df = pd.read_csv(ROOT / "data" / "synthetic_work_orders.csv")
+        df = pd.DataFrame(
+            {
+                "created_month": [1, 7],
+                "is_winter": [1, 0],
+                "complaint_type": ["HEAT/HOT WATER", "PLUMBING"],
+                "has_descriptor": [1, 1],
+                "borough": ["BRONX", "BROOKLYN"],
+                "location_type": ["Residential Building", "Apartment"],
+                "open_data_channel_type": ["PHONE", "ONLINE"],
+            }
+        )
         features = build_feature_matrix(df)
-        self.assertIn("category_hvac", features.columns)
-        self.assertIn("safety_flag", features.columns)
+        self.assertIn("complaint_heat_hot_water", features.columns)
+        self.assertIn("borough_bronx", features.columns)
 
     def test_model_predicts_probabilities(self):
-        df = pd.read_csv(ROOT / "data" / "synthetic_work_orders.csv")
+        df = pd.DataFrame(
+            {
+                "created_month": [1, 7, 2, 9, 12, 5],
+                "is_winter": [1, 0, 1, 0, 1, 0],
+                "complaint_type": ["HEAT/HOT WATER", "PLUMBING", "ELECTRIC", "GENERAL", "WATER LEAK", "APPLIANCE"],
+                "has_descriptor": [1, 1, 0, 1, 1, 0],
+                "borough": ["BRONX", "BROOKLYN", "QUEENS", "MANHATTAN", "BRONX", "BROOKLYN"],
+                "location_type": ["Residential Building"] * 6,
+                "open_data_channel_type": ["PHONE", "ONLINE", "MOBILE", "PHONE", "ONLINE", "PHONE"],
+            }
+        )
         x = build_feature_matrix(df).to_numpy()
-        y = df["urgent_followup"].to_numpy()
+        y = [1, 0, 1, 0, 1, 0]
         model = LogisticPriorityModel(epochs=200)
         model.fit(x, y)
         probs = model.predict_proba(x[:3])
@@ -31,13 +51,13 @@ class MaintenancePriorityTests(unittest.TestCase):
         payload = load_model(ROOT / "artifacts" / "maintenance_priority_model.json")
         result = score_work_order(
             {
-                "age_days": 4,
-                "category": "hvac",
-                "occupied_unit": 1,
-                "safety_flag": 1,
-                "recurrence_count": 2,
-                "asset_age_years": 14,
-                "after_hours": 1,
+                "created_month": 1,
+                "is_winter": 1,
+                "complaint_type": "HEAT/HOT WATER",
+                "has_descriptor": 1,
+                "borough": "BRONX",
+                "location_type": "Residential Building",
+                "open_data_channel_type": "PHONE",
             },
             model_payload=payload,
         )

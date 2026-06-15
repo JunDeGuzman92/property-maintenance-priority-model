@@ -10,13 +10,14 @@ from maintenance_priority import load_model, score_work_order
 
 
 SAMPLE_RECORD = {
-    "age_days": 4,
-    "category": "hvac",
-    "occupied_unit": 1,
-    "safety_flag": 1,
-    "recurrence_count": 2,
-    "asset_age_years": 14,
-    "after_hours": 1,
+    "created_month": 1,
+    "is_winter": 1,
+    "complaint_type": "HEAT/HOT WATER",
+    "descriptor": "ENTIRE BUILDING",
+    "has_descriptor": 1,
+    "borough": "BRONX",
+    "location_type": "Residential Building",
+    "open_data_channel_type": "PHONE",
 }
 
 

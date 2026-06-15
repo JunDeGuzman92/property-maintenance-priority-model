@@ -47,6 +47,5 @@ class LogisticPriorityModel:
             "mean": self.mean_.round(6).tolist(),
             "scale": self.scale_.round(6).tolist(),
             "metrics": metrics,
-            "privacy_note": "Synthetic data only. Human review required for any operational use.",
+            "privacy_note": "Public NYC 311/HPD service-request data only. Human review required for any operational use.",
         }
-

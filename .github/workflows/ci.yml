@@ -13,6 +13,7 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
+      - run: python scripts/download_data.py
       - run: python scripts/train_priority_model.py
       - run: python scripts/predict.py
       - run: python -m unittest discover -s tests
