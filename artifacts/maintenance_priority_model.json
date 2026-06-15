@@ -1,0 +1,71 @@
+{
+  "model_type": "from_scratch_logistic_regression",
+  "feature_names": [
+    "age_days",
+    "occupied_unit",
+    "safety_flag",
+    "recurrence_count",
+    "asset_age_years",
+    "after_hours",
+    "category_appliance",
+    "category_cosmetic",
+    "category_electrical",
+    "category_hvac",
+    "category_life_safety",
+    "category_plumbing"
+  ],
+  "weights": [
+    0.394551,
+    1.13958,
+    1.74362,
+    0.838253,
+    1.063464,
+    0.629472,
+    -0.34676,
+    -0.332889,
+    -0.032392,
+    0.076811,
+    0.753741,
+    -0.066405
+  ],
+  "bias": 0.570976,
+  "mean": [
+    7.944444,
+    0.666667,
+    0.277778,
+    1.333333,
+    8.0,
+    0.166667,
+    0.222222,
+    0.166667,
+    0.166667,
+    0.111111,
+    0.166667,
+    0.166667
+  ],
+  "scale": [
+    5.739456,
+    0.471405,
+    0.447903,
+    1.247219,
+    4.255715,
+    0.372678,
+    0.41574,
+    0.372678,
+    0.372678,
+    0.31427,
+    0.372678,
+    0.372678
+  ],
+  "metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "tp": 4,
+    "tn": 2,
+    "fp": 0,
+    "fn": 0
+  },
+  "privacy_note": "Synthetic data only. Human review required for any operational use."
+}
