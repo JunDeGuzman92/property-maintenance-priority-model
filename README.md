@@ -36,7 +36,7 @@ python -m unittest discover -s tests
 
 ## Notebook Walkthrough
 
-Open `notebooks/01_nyc_311_priority_modeling.ipynb` in VS Code or Google Colab to review the full analysis flow: public 311 data pull, cleaning, target construction, feature engineering, summary measures, correlations, train/test split, logistic regression, metrics, visualizations, and model interpretation.
+Open `notebooks/nyc_311_priority_modeling.ipynb` in VS Code or Google Colab to review the full analysis flow: public 311 data pull, cleaning, target construction, feature engineering, summary measures, correlations, train/test split, logistic regression, metrics, visualizations, and model interpretation.
 
 The training script writes:
 
